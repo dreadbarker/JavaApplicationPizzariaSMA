@@ -21,7 +21,7 @@ public class Cliente extends Agent {
         addBehaviour(new OneShotBehaviour(this) {
           public void action() {
               ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
-              msg.addReceiver(new AID("Telefonista", AID.ISLOCALNAME));
+              msg.addReceiver(new AID("telefonistaSara", AID.ISLOCALNAME));
               msg.setLanguage("Português");
               msg.setOntology("Pedido");
               msg.setContent("Pizza");
