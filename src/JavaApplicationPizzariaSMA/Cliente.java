@@ -33,16 +33,30 @@ public class Cliente extends Agent {
             public void action() {
                 ACLMessage msg = myAgent.receive();
                 if(msg != null) {
-                    String content = msg.getContent();
-                    System.out.println("--> "+msg.getSender().getName() + ":" + content);
+                    if(msg.getSender().getName().contains("telefonista"))
+                    {
+                        String content = msg.getContent();
+                        System.out.println(msg.getSender().getName() + "--> " + this.myAgent.getLocalName()+ ":" + content);        
+                    }
+                    else if(msg.getSender().getName().contains("motoboy"))
+                    {
+                        String content = msg.getContent();
+                        System.out.println(msg.getSender().getName() + "--> " + this.myAgent.getLocalName()+ ":" + content);
+                        //invoca a execução do método takeDown()
+                        doDelete(); 
+                   }
                 }
                 else
                 {
-                    //com o block() bloqueamos o comportamento até qe uma nova mensagem
+                    //com o block() bloqueamos o comportamento até que uma nova mensagem
                     //chegue ao agente e assim evitamos consumir ciclos da cpu.
                     block();
                 }
             }
         });
+    }
+    
+    protected void takeDown() {
+        System.out.println("Agente "+getAID().getName()+" está finalizado.");
     }
 }

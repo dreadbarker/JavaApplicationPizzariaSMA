@@ -32,8 +32,9 @@ public class Telefonista extends Agent {
                         reply.setContent("Recebi seu pedido! Obrigado.");
                         myAgent.send(reply);
                         
-                       System.out.println("O agente " + msg.getSender().getName() + " avisou de um pedido.");
-                       System.out.println("Vou avisar o pizzaiolo");
+                       System.out.println("O cliente " + msg.getSender().getName() + " avisou de um pedido, vou avisar o pizzaiolo");
+                       
+                       
                     }
                 } else 
                 {
