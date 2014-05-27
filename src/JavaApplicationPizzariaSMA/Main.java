@@ -6,16 +6,10 @@
 
 package JavaApplicationPizzariaSMA;
 
-import jade.core.Agent;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
-import jade.lang.acl.ACLMessage;
 import jade.tools.sniffer.Sniffer;
-import jade.util.leap.ArrayList;
 import jade.wrapper.AgentContainer;
-import jade.wrapper.ContainerController;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  *

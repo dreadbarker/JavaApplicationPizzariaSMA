@@ -21,9 +21,20 @@ public class Pizzaiolo extends Agent {
         addBehaviour(new CyclicBehaviour(this) {
             public void action() {
                 ACLMessage msg = myAgent.receive();
-                if(msg != null) {
-                    String content = msg.getContent();
-                    System.out.println(msg.getSender().getName() + "--> " + this.myAgent.getLocalName()+ ":" + content);
+                if(msg != null) 
+                {                    
+                    //se pizzaiolo receber mensagem de sara
+                    if(msg.getSender().getLocalName().equals("telefonistaSara"))
+                    {
+                        //reponder telefonista
+                        ACLMessage reply = msg.createReply();
+                        reply.setPerformative(ACLMessage.INFORM);
+                        reply.setContent("Recebi o pedido do cliente! Obrigado.");
+                        myAgent.send(reply);
+                        
+                        System.out.println("A telefonista " + msg.getSender().getName() + " me avisou de um pedido, vou fazer a pizza");
+                        System.out.println("Pizza do cliente " + msg.getContent() + " pronta!");
+                    }
                 }
                 else
                 {
