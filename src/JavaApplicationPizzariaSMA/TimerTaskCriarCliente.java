@@ -25,6 +25,7 @@ public class TimerTaskCriarCliente  extends TimerTask
         this._timer = timer;
         this._ac = ac;
     }
+    
     public void run() {
         //create new agents and pass it a reference to an object
         try

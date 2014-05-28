@@ -32,7 +32,7 @@ public class Telefonista extends Agent {
                         reply.setContent("Recebi seu pedido! Obrigado.");
                         myAgent.send(reply);
                         
-                        System.out.println("O cliente " + msg.getSender().getName() + " avisou de um pedido, vou avisar o pizzaiolo");
+                        System.out.println("O cliente " + msg.getSender().getName() + " avisou de um pedido, telefonista vai avisar o pizzaiolo");
 
                         //enviar mensagem para pizzaiolo
                         ACLMessage mensagemParaPizzaiolo = new ACLMessage(ACLMessage.INFORM);

@@ -44,7 +44,7 @@ public class Cliente extends Agent {
                         System.out.println(msg.getSender().getName() + "--> " + this.myAgent.getLocalName()+ ":" + content);
                         //invoca a execução do método takeDown()
                         doDelete(); 
-                   }
+                    }
                 }
                 else
                 {
