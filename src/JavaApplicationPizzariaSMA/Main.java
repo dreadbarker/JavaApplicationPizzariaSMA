@@ -56,7 +56,7 @@ public class Main {
             JavaApplicationPizzariaSMA.Motoboy motoboy = new Motoboy();
             jade.wrapper.AgentController motoboyJoaoAC = cc.acceptNewAgent("motoboyJoao", motoboy);
             JavaApplicationPizzariaSMA.Motoboy motoboyPedro = new Motoboy();
-            jade.wrapper.AgentController motoboyPedroAC = cc.acceptNewAgent("motoboyPedro", motoboy);
+            jade.wrapper.AgentController motoboyPedroAC = cc.acceptNewAgent("motoboyPedro", motoboyPedro);
             
             JavaApplicationPizzariaSMA.Pizzaiolo pizzaiolo = new Pizzaiolo();
             jade.wrapper.AgentController pizzaioloAC = cc.acceptNewAgent("pizzaioloBeto", pizzaiolo);

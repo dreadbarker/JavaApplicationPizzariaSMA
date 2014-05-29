@@ -28,6 +28,16 @@ public class Motoboy extends Agent {
         //vamos registrar o agente no DF
         try
         {
+            //Criamos uma entrada no DF        
+            dfd.setName(getAID()); //Informamos a AID do agente
+
+            //vamos criar um serviço
+            ServiceDescription sd = new ServiceDescription();
+            sd.setType("Transporte");
+            sd.setName("Delivery");
+            //adicionar o serviço
+            dfd.addServices(sd);
+        
             //register(agente que oferece, descrição)
             DFService.register(this, dfd);
             this.registrado = true;
@@ -53,16 +63,6 @@ public class Motoboy extends Agent {
     }
     
     protected void setup() {
-                
-        //Criamos uma entrada no DF        
-        dfd.setName(getAID()); //Informamos a AID do agente
-        
-        //vamos criar um serviço
-        ServiceDescription sd = new ServiceDescription();
-        sd.setType("Transporte");
-        sd.setName("Delivery");
-        //adicionar o serviço
-        dfd.addServices(sd);
         
         SeRegistrarParaServicoTransporte();
         
@@ -86,7 +86,7 @@ public class Motoboy extends Agent {
                         SeDesregistrarParaServicoTransporte(myAgent);
 
                         //Se registrar novamente daqui a unidade de tempo determinada
-                        TimerRegistrarParaServicoTransporte timer = new TimerRegistrarParaServicoTransporte(7, Motoboy.this);      
+                        //TimerRegistrarParaServicoTransporte timer = new TimerRegistrarParaServicoTransporte(7, Motoboy.this);    
                         
                         //Enviar mensagem para cliente
                         ACLMessage mensagemParaCliente = new ACLMessage(ACLMessage.INFORM);
@@ -94,7 +94,17 @@ public class Motoboy extends Agent {
                         mensagemParaCliente.setLanguage("Português");
                         mensagemParaCliente.setOntology("Pedido");
                         mensagemParaCliente.setContent("Ó véio, aqui tá tua pizza. Valeu, pela preferência mano.");
-                        myAgent.send(mensagemParaCliente);   
+                        myAgent.send(mensagemParaCliente);  
+                        
+                        try
+                        {
+                            Thread.sleep(6 * 1000);
+                        }
+                        catch(Exception ex)
+                        {
+                            System.out.println("sleep erro."+ex.getMessage());
+                        }
+                        SeRegistrarParaServicoTransporte(); 
                     }
                     else
                     {

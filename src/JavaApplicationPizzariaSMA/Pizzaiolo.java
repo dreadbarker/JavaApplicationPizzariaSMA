@@ -64,7 +64,7 @@ public class Pizzaiolo extends Agent {
                             myAgent.send(msg);
 
                             //Finaliza comportamento
-                            stop();
+//                            stop();
                         }
                     } catch(FIPAException e)
                     {
