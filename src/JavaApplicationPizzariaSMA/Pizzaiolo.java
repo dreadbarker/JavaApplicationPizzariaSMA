@@ -6,8 +6,8 @@
 
 package JavaApplicationPizzariaSMA;
 
+import UI.BackgroundImagemJFrame;
 import jade.core.Agent;
-import jade.core.ServiceDescriptor;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.core.behaviours.TickerBehaviour;
 import jade.domain.DFService;
@@ -15,7 +15,6 @@ import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
 import jade.domain.FIPAException;
 import jade.lang.acl.ACLMessage;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -25,10 +24,12 @@ import java.util.Queue;
  */
 public class Pizzaiolo extends Agent {
     
+    private BackgroundImagemJFrame _jframe;
+    
     private Queue<String> _clientesComPizzaPronta  = new LinkedList<String>();
     public Queue<String> getClientesComPizzaPronta()
     {
-        return _clientesComPizzaPronta;    
+        return _clientesComPizzaPronta;
     }
         
     protected void setup() {
@@ -45,7 +46,9 @@ public class Pizzaiolo extends Agent {
                 if(clienteLocalName != null)
                 {
                     System.out.println("Pizzaiolo vai verificar se algum motoboy poderia levar a pizza do cliente " + clienteLocalName);
-                    
+                    _jframe.jTextFieldConversaPizzaioloMotoboys.setText("Buscando motoboy para entregar pizza do cliente "+clienteLocalName);
+                    _jframe.Dormir(5);
+                                        
                     //busca por quem fornece o serviço, passando o nome do cliente 
                     ServiceDescription servicoDelivery = new ServiceDescription();
                     servicoDelivery.setType("Transporte");
@@ -63,6 +66,8 @@ public class Pizzaiolo extends Agent {
                             msg.setContent(clienteLocalName); //nome do cliente
                             myAgent.send(msg);
 
+                            _jframe.jTextFieldConversaPizzaioloMotoboys.setText(resultado[0].getName() + "Podes levar?");
+                            _jframe.Dormir(5);
                             //Finaliza comportamento
 //                            stop();
                         }
@@ -86,8 +91,11 @@ public class Pizzaiolo extends Agent {
                         //reponder telefonista
                         ACLMessage reply = msg.createReply();
                         reply.setPerformative(ACLMessage.INFORM);
-                        reply.setContent("Recebi o pedido do cliente! Obrigado.");
+                        String contentMsg = "Recebi o pedido do cliente "+msg.getContent()+"! Obrigado.";
+                        reply.setContent(contentMsg);                                                
                         myAgent.send(reply);
+                        _jframe.jTextFieldPizzaioloRespondeTelefonista.setText(contentMsg);
+                        _jframe.Dormir(5);
                         
                         System.out.println("A telefonista " + msg.getSender().getName() + " avisou pizzaiolo de um pedido, ele vai fazer a pizza");
                         System.out.println("Pizza do cliente " + msg.getContent() + " pronta!");
@@ -111,6 +119,10 @@ public class Pizzaiolo extends Agent {
                 }
             }
         });
-    }
+    }    
     
+    public void setJFrame(BackgroundImagemJFrame jframe)
+    {
+        this._jframe = jframe;
+    }
 }

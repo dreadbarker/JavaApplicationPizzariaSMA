@@ -6,6 +6,7 @@
 
 package JavaApplicationPizzariaSMA;
 
+import UI.BackgroundImagemJFrame;
 import jade.core.Profile;
 import jade.core.ProfileImpl;
 import jade.tools.sniffer.Sniffer;
@@ -21,12 +22,15 @@ public class Main {
      * @param args the command line arguments
      */    
     private static AgentContainer cc;
+    public static BackgroundImagemJFrame jframe;
     
     public static void main(String[] args) {
         // TODO code application logic here
+        jframe = new BackgroundImagemJFrame();
+        
         startJadePlatform();                
     }
-    
+        
     private static void startJadePlatform()
     {
         //http://wenku.baidu.com/view/aacb10eeaeaad1f346933f1d.html
@@ -42,10 +46,13 @@ public class Main {
             cc = rt.createMainContainer(p);
                             
             //create new agents and pass it a reference to an object
-            Object reference = new Object();
-            Object args[] = new Object[1];
-            args[0] = reference;
-            jade.wrapper.AgentController telefonistaSara = cc.createNewAgent("telefonistaSara", "JavaApplicationPizzariaSMA.Telefonista", args);
+//            Object reference = new Object();
+//            Object args[] = new Object[1];
+//            args[0] = reference;
+//            jade.wrapper.AgentController telefonistaSara = cc.createNewAgent("telefonistaSara", "JavaApplicationPizzariaSMA.Telefonista", args);
+            JavaApplicationPizzariaSMA.Telefonista telefonistaSara = new Telefonista();
+            telefonistaSara.setJFrame(jframe);
+            jade.wrapper.AgentController telefonistaSaraAC = cc.acceptNewAgent("telefonistaSara", telefonistaSara);
                         
 //            //create new agents and pass it a reference to an object
 //            Object referenceClienteJean = new Object();
@@ -54,11 +61,14 @@ public class Main {
 //            jade.wrapper.AgentController clienteJean = cc.createNewAgent("clienteJean", "JavaApplicationPizzariaSMA.Cliente", argsClienteJean);
                                                  
             JavaApplicationPizzariaSMA.Motoboy motoboy = new Motoboy();
+            motoboy.setJFrame(jframe);
             jade.wrapper.AgentController motoboyJoaoAC = cc.acceptNewAgent("motoboyJoao", motoboy);
             JavaApplicationPizzariaSMA.Motoboy motoboyPedro = new Motoboy();
+            motoboyPedro.setJFrame(jframe);
             jade.wrapper.AgentController motoboyPedroAC = cc.acceptNewAgent("motoboyPedro", motoboyPedro);
             
             JavaApplicationPizzariaSMA.Pizzaiolo pizzaiolo = new Pizzaiolo();
+            pizzaiolo.setJFrame(jframe);
             jade.wrapper.AgentController pizzaioloAC = cc.acceptNewAgent("pizzaioloBeto", pizzaiolo);
             
             //Adiciona os agentes na lista para serem espionados
@@ -71,9 +81,9 @@ public class Main {
             pizzaioloAC.start();
             motoboyJoaoAC.start();
             motoboyPedroAC.start();
-            telefonistaSara.start();
-            //criar cliente a cada 5 segundos
-            TimerCriarCliente tcc = new TimerCriarCliente(5, cc);
+            telefonistaSaraAC.start();
+            //criar cliente a cada x segundos
+            TimerCriarCliente tcc = new TimerCriarCliente(30, cc, jframe);
              
         }catch(Exception ex)
         {

@@ -6,6 +6,7 @@
 
 package JavaApplicationPizzariaSMA;
 
+import UI.BackgroundImagemJFrame;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
@@ -20,6 +21,9 @@ import jade.lang.acl.ACLMessage;
  * @author jean
  */
 public class Motoboy extends Agent {
+    
+    private BackgroundImagemJFrame _jframe;
+    
     private DFAgentDescription dfd = new DFAgentDescription();
     private boolean registrado = false;
     
@@ -42,13 +46,26 @@ public class Motoboy extends Agent {
             DFService.register(this, dfd);
             this.registrado = true;
             System.out.println("motoboy "+ this.getLocalName()+" está registrado no DF.");
+            
+            String contentMsg = "Estou disponível para entregas.";
+            
+            if(this.getLocalName().equals("motoboyPedro"))
+            {
+                _jframe.jTextFieldStatusPedro.setText(contentMsg);            
+                _jframe.Dormir(5);
+            }
+            else
+            {
+                _jframe.jTextFieldStatusJoao.setText(contentMsg);
+                _jframe.Dormir(5);
+            }
         } catch (FIPAException e) 
         {
             System.out.println(e.getMessage());
         }   
     }
     
-    public void SeDesregistrarParaServicoTransporte(Agent myAgent)
+    public void SeDesregistrarParaServicoTransporte(Agent myAgent, String cliente)
     {
         try
         {
@@ -56,6 +73,19 @@ public class Motoboy extends Agent {
             DFService.deregister(myAgent);
             this.registrado = false;
             System.out.println("motoboy "+myAgent.getLocalName()+" não está mais registrado no DF.");
+            String contentMsg = "Estou entregando a pizza do "+cliente+".";
+            
+            if(myAgent.getLocalName().equals("motoboyPedro"))
+            {
+                _jframe.jTextFieldStatusPedro.setText(contentMsg);            
+                _jframe.Dormir(5);
+            }
+            else
+            {
+                _jframe.jTextFieldStatusJoao.setText(contentMsg);
+                _jframe.Dormir(5);
+            }
+            
         } catch (FIPAException e) 
         {
             System.out.println(e.getMessage());
@@ -75,15 +105,17 @@ public class Motoboy extends Agent {
                     //Verificar disponibilidade
                     if(registrado)
                     {
-                        System.out.println("Pizzaiolo " + msg.getSender().getLocalName() + " pediu para entregrar a pizza do cliente "+ content +" e motoboy "+myAgent.getLocalName()+" irá.");
+                        System.out.println("Pizzaiolo " + msg.getSender().getLocalName() + " pediu para entregar a pizza do cliente "+ content +" e motoboy "+myAgent.getLocalName()+" irá.");
                                                 
                         //responder e avisar ao pizzaiolo que está disponível                        
                         ACLMessage reply = msg.createReply();
                         reply.setPerformative(ACLMessage.ACCEPT_PROPOSAL);
                         reply.setContent("Vou entregrar a pizza do cliente " + content + " e já volto.");
                         myAgent.send(reply);
+                        _jframe.jTextFieldConversaPizzaioloMotoboys.setText(myAgent.getLocalName()+": vou levar para cliente"+content);
+                        _jframe.Dormir(5);
                                                                 
-                        SeDesregistrarParaServicoTransporte(myAgent);
+                        SeDesregistrarParaServicoTransporte(myAgent, content);
 
                         //Se registrar novamente daqui a unidade de tempo determinada
                         //TimerRegistrarParaServicoTransporte timer = new TimerRegistrarParaServicoTransporte(7, Motoboy.this);    
@@ -95,6 +127,18 @@ public class Motoboy extends Agent {
                         mensagemParaCliente.setOntology("Pedido");
                         mensagemParaCliente.setContent("Ó véio, aqui tá tua pizza. Valeu, pela preferência mano.");
                         myAgent.send(mensagemParaCliente);  
+                        
+                        String contentMsg = content + "aqui está sua pizza.";            
+                        if(myAgent.getLocalName().equals("motoboyPedro"))
+                        {
+                            _jframe.jTextFieldConversaMotoboyPedroCliente.setText(contentMsg);                                 
+                            _jframe.Dormir(5);
+                        }
+                        else
+                        {
+                            _jframe.jTextFieldConversaMotoboyJoaoCliente.setText(contentMsg);
+                            _jframe.Dormir(5);
+                        }
                         
                         try
                         {
@@ -114,7 +158,10 @@ public class Motoboy extends Agent {
                         ACLMessage reply = msg.createReply();
                         reply.setPerformative(ACLMessage.REJECT_PROPOSAL);
                         reply.setContent("Tô na corrida mano, agora não dá!");
-                        myAgent.send(reply);                                   
+                        myAgent.send(reply);
+                        
+                        _jframe.jTextFieldConversaPizzaioloMotoboys.setText(myAgent.getLocalName()+": não estou disponível.");
+                        _jframe.Dormir(5);
                     }
                 }
                 else
@@ -126,5 +173,9 @@ public class Motoboy extends Agent {
             }
         });
     }
-    
+        
+    public void setJFrame(BackgroundImagemJFrame jframe)
+    {
+        this._jframe = jframe;
+    }
 }

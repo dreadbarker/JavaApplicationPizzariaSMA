@@ -6,6 +6,7 @@
 
 package JavaApplicationPizzariaSMA;
 
+import UI.BackgroundImagemJFrame;
 import jade.core.AID;
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour;
@@ -16,6 +17,8 @@ import jade.lang.acl.ACLMessage;
  * @author jean
  */
 public class Telefonista extends Agent {
+    
+    private BackgroundImagemJFrame _jframe;
     
     protected void setup() {
         
@@ -29,8 +32,11 @@ public class Telefonista extends Agent {
                     if(content.equalsIgnoreCase("Pizza")) {
                         ACLMessage reply = msg.createReply();
                         reply.setPerformative(ACLMessage.INFORM);
-                        reply.setContent("Recebi seu pedido! Obrigado.");
-                        myAgent.send(reply);
+                        String contentMsg = msg.getSender().getName() + "Recebi seu pedido! Obrigado.";
+                        reply.setContent(contentMsg);
+                        myAgent.send(reply);                        
+                        _jframe.jTextFieldTelefonistaRespostaCliente.setText(contentMsg);
+                        _jframe.Dormir(5);
                         
                         System.out.println("O cliente " + msg.getSender().getName() + " avisou de um pedido, telefonista vai avisar o pizzaiolo");
 
@@ -42,6 +48,9 @@ public class Telefonista extends Agent {
                         //no conteúdo, enviar nome do cliente
                         mensagemParaPizzaiolo.setContent(msg.getSender().getLocalName());
                         myAgent.send(mensagemParaPizzaiolo);                       
+                        
+                        _jframe.jTextFieldTelefonistaPizzaiolo.setText("Envio do pedido do cliente "+ msg.getSender().getName());
+                        _jframe.Dormir(5);
                     }
                 } else 
                 {
@@ -52,4 +61,8 @@ public class Telefonista extends Agent {
         
     }
     
+    public void setJFrame(BackgroundImagemJFrame jframe)
+    {
+        this._jframe = jframe;
+    }
 }

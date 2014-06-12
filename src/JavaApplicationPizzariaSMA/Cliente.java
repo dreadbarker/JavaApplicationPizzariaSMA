@@ -6,17 +6,23 @@
 
 package JavaApplicationPizzariaSMA;
 
+import UI.BackgroundImagemJFrame;
 import jade.core.Agent;
 import jade.core.AID;
 import jade.core.behaviours.CyclicBehaviour;
 import jade.core.behaviours.OneShotBehaviour;
 import jade.lang.acl.ACLMessage;
+import java.awt.Font;
+import javax.swing.JFrame;
 
 /**
  *
  * @author jean
  */
 public class Cliente extends Agent {
+    
+    private BackgroundImagemJFrame _jframe;
+    
     protected void setup() {
         addBehaviour(new OneShotBehaviour(this) {
           public void action() {
@@ -24,8 +30,13 @@ public class Cliente extends Agent {
               msg.addReceiver(new AID("telefonistaSara", AID.ISLOCALNAME));
               msg.setLanguage("Português");
               msg.setOntology("Pedido");
+              String content = "O cliente " + getAID().getName() + " está pedindo uma pizza.";
+              System.out.println(content);
               msg.setContent("Pizza");
               myAgent.send(msg);
+              
+              _jframe.jTextFieldClienteTelefonista.setText(content);    
+              _jframe.Dormir(5);
           }  
         });
         
@@ -42,6 +53,19 @@ public class Cliente extends Agent {
                     {
                         String content = msg.getContent();
                         System.out.println(msg.getSender().getName() + "--> " + this.myAgent.getLocalName()+ ":" + content);
+                        
+                        String contentMsg = this.myAgent.getAID().getLocalName() + "diz: Obrigado.";
+                        if(msg.getSender().getName().contains("motoboyPedro"))
+                        {
+                            _jframe.jTextFieldConversaMotoboyPedroCliente.setText(contentMsg);
+                            _jframe.Dormir(5);
+                        }            
+                        else
+                        {
+                            _jframe.jTextFieldConversaMotoboyJoaoCliente.setText(contentMsg);
+                            _jframe.Dormir(5);
+                        }
+                        
                         //invoca a execução do método takeDown()
                         doDelete(); 
                     }
@@ -58,5 +82,12 @@ public class Cliente extends Agent {
     
     protected void takeDown() {
         System.out.println("Agente "+getAID().getName()+" está finalizado.");
+        
+        this._jframe.RemoveClient(this.getName());
+    }
+    
+    public void setJFrame(BackgroundImagemJFrame jframe)
+    {
+        this._jframe = jframe;
     }
 }

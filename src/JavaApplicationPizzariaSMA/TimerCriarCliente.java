@@ -6,6 +6,7 @@
 
 package JavaApplicationPizzariaSMA;
 
+import UI.BackgroundImagemJFrame;
 import java.util.Timer;
 /**
  *
@@ -14,9 +15,9 @@ import java.util.Timer;
 public class TimerCriarCliente {
     
     Timer timer;
-    public TimerCriarCliente(int segundos, jade.wrapper.AgentContainer ac)
+    public TimerCriarCliente(int segundos, jade.wrapper.AgentContainer ac, BackgroundImagemJFrame jframe)
     {
         timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTaskCriarCliente(timer, ac), 0, segundos*1000);
+        timer.scheduleAtFixedRate(new TimerTaskCriarCliente(timer, ac, jframe), 0, segundos*1000);
     }
 }
