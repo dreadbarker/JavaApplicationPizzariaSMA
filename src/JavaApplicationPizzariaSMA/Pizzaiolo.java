@@ -45,9 +45,10 @@ public class Pizzaiolo extends Agent {
                 //retorna null se vazio
                 if(clienteLocalName != null)
                 {
-                    System.out.println("Pizzaiolo vai verificar se algum motoboy poderia levar a pizza do cliente " + clienteLocalName);
-                    _jframe.jTextFieldConversaPizzaioloMotoboys.setText("Buscando motoboy para entregar pizza do cliente "+clienteLocalName);
-                    _jframe.Dormir(5);
+                    System.out.println("Pizzaiolo vai verificar se algum motoboy poderia levar a pizza do " + clienteLocalName);
+                    
+                    _jframe.jTextFieldConversaPizzaioloMotoboys.setText("Buscando motoboy para entregar ao "+clienteLocalName);
+                    _jframe.Dormir();
                                         
                     //busca por quem fornece o serviço, passando o nome do cliente 
                     ServiceDescription servicoDelivery = new ServiceDescription();
@@ -66,10 +67,17 @@ public class Pizzaiolo extends Agent {
                             msg.setContent(clienteLocalName); //nome do cliente
                             myAgent.send(msg);
 
-                            _jframe.jTextFieldConversaPizzaioloMotoboys.setText(resultado[0].getName() + "Podes levar?");
-                            _jframe.Dormir(5);
+                            _jframe.jTextFieldConversaPizzaioloMotoboys.setText(resultado[0].getName() + " Podes levar?");
+                            _jframe.Dormir();
                             //Finaliza comportamento
 //                            stop();
+                        }
+                        else
+                        {
+                            String contentMsg = "Nenhum motoboy disponível para levar a pizza do " + clienteLocalName;
+                            System.out.println(contentMsg);
+                            _jframe.jTextFieldConversaPizzaioloMotoboys.setText(contentMsg);
+                            _jframe.Dormir();
                         }
                     } catch(FIPAException e)
                     {
@@ -91,11 +99,11 @@ public class Pizzaiolo extends Agent {
                         //reponder telefonista
                         ACLMessage reply = msg.createReply();
                         reply.setPerformative(ACLMessage.INFORM);
-                        String contentMsg = "Recebi o pedido do cliente "+msg.getContent()+"! Obrigado.";
+                        String contentMsg = "Recebi o pedido do "+msg.getContent()+"! Obrigado.";
                         reply.setContent(contentMsg);                                                
                         myAgent.send(reply);
                         _jframe.jTextFieldPizzaioloRespondeTelefonista.setText(contentMsg);
-                        _jframe.Dormir(5);
+                        _jframe.Dormir();
                         
                         System.out.println("A telefonista " + msg.getSender().getName() + " avisou pizzaiolo de um pedido, ele vai fazer a pizza");
                         System.out.println("Pizza do cliente " + msg.getContent() + " pronta!");

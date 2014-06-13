@@ -21,12 +21,21 @@ public class Main {
     /**
      * @param args the command line arguments
      */    
+    private static boolean _apresentacao = true;
+    private static int _tempoSpawnCliente = 2;
+    private static int _tempoEntregaPizzaMotoboy = 15;
+    private static int _tempoSleepEtapasApresentacao = 20;
+    
     private static AgentContainer cc;
     public static BackgroundImagemJFrame jframe;
     
     public static void main(String[] args) {
         // TODO code application logic here
         jframe = new BackgroundImagemJFrame();
+        jframe.setApresentacao(_apresentacao);
+        jframe.setTempoSpawnCliente(_tempoSpawnCliente);
+        jframe.setTempoEntregaPizzaMotoboy(_tempoEntregaPizzaMotoboy);
+        jframe.setTempoSleepEtapasApresentacao(_tempoSleepEtapasApresentacao);
         
         startJadePlatform();                
     }
@@ -63,6 +72,7 @@ public class Main {
             JavaApplicationPizzariaSMA.Motoboy motoboy = new Motoboy();
             motoboy.setJFrame(jframe);
             jade.wrapper.AgentController motoboyJoaoAC = cc.acceptNewAgent("motoboyJoao", motoboy);
+            
             JavaApplicationPizzariaSMA.Motoboy motoboyPedro = new Motoboy();
             motoboyPedro.setJFrame(jframe);
             jade.wrapper.AgentController motoboyPedroAC = cc.acceptNewAgent("motoboyPedro", motoboyPedro);
@@ -82,8 +92,52 @@ public class Main {
             motoboyJoaoAC.start();
             motoboyPedroAC.start();
             telefonistaSaraAC.start();
-            //criar cliente a cada x segundos
-            TimerCriarCliente tcc = new TimerCriarCliente(30, cc, jframe);
+                  
+            //Visibilidade Componentes tela
+            jframe.jLabelModo.setVisible(true);
+            jframe.jLabelModoResposta.setVisible(true);            
+            
+            if(_apresentacao) //cria somente uma vez
+            {          
+                //Visibilidade Componentes tela 
+                jframe.jLabelTempoSpawnClientes.setVisible(false);
+                jframe.jLabelTempoSpawnClientesResposta.setVisible(false);
+                jframe.jLabelTempoDelivery.setVisible(false);
+                jframe.jLabelTempoDeliveryResposta.setVisible(false); 
+                jframe.jLabelTempoSleepEtapasApresentacao.setVisible(true); 
+                jframe.jLabelTempoSleepEtapasApresentacaoResposta.setVisible(true); 
+                //Valores labels
+                jframe.jLabelModoResposta.setText("Apresentação"); 
+                jframe.jLabelTempoSleepEtapasApresentacaoResposta.setText(String.valueOf(_tempoSleepEtapasApresentacao));
+                
+                //Cria cliente
+                JavaApplicationPizzariaSMA.Cliente cliente = new Cliente();
+                cliente.setJFrame(jframe);
+                jade.wrapper.AgentController clienteAC = cc.acceptNewAgent("cliente_0", cliente);
+                
+                //demorar um pouco para dar tempo de obter o sniff do cliente
+                jframe.Dormir();
+                
+                clienteAC.start();            
+
+                jframe.AddClient(cliente.getName());
+            }
+            else //criar cliente a cada x segundos
+            {
+                //Visibilidade Componentes tela
+                jframe.jLabelTempoSpawnClientes.setVisible(true);
+                jframe.jLabelTempoSpawnClientesResposta.setVisible(true);
+                jframe.jLabelTempoDelivery.setVisible(true);
+                jframe.jLabelTempoDeliveryResposta.setVisible(true); 
+                jframe.jLabelTempoSleepEtapasApresentacao.setVisible(false); 
+                jframe.jLabelTempoSleepEtapasApresentacaoResposta.setVisible(false); 
+                //Valores labels
+                jframe.jLabelModoResposta.setText("Normal");
+                jframe.jLabelTempoSpawnClientesResposta.setText(String.valueOf(_tempoSpawnCliente));
+                jframe.jLabelTempoDeliveryResposta.setText(String.valueOf(_tempoEntregaPizzaMotoboy)); 
+                
+                TimerCriarCliente tcc = new TimerCriarCliente(_tempoSpawnCliente, cc, jframe);
+            }
              
         }catch(Exception ex)
         {

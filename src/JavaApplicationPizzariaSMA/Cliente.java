@@ -30,13 +30,13 @@ public class Cliente extends Agent {
               msg.addReceiver(new AID("telefonistaSara", AID.ISLOCALNAME));
               msg.setLanguage("Português");
               msg.setOntology("Pedido");
-              String content = "O cliente " + getAID().getName() + " está pedindo uma pizza.";
+              String content = "O " + getAID().getLocalName() + " está pedindo uma pizza.";
               System.out.println(content);
               msg.setContent("Pizza");
               myAgent.send(msg);
               
               _jframe.jTextFieldClienteTelefonista.setText(content);    
-              _jframe.Dormir(5);
+              _jframe.Dormir();
           }  
         });
         
@@ -52,18 +52,29 @@ public class Cliente extends Agent {
                     else if(msg.getSender().getName().contains("motoboy"))
                     {
                         String content = msg.getContent();
-                        System.out.println(msg.getSender().getName() + "--> " + this.myAgent.getLocalName()+ ":" + content);
+                        //System.out.println(msg.getSender().getName() + "--> " + this.myAgent.getLocalName()+ ":" + content);
+                        System.out.println("O " + this.myAgent.getAID().getLocalName()+ " recebeu a pizza do" + msg.getSender().getName() + ":" +content);
                         
-                        String contentMsg = this.myAgent.getAID().getLocalName() + "diz: Obrigado.";
+                        /***/
+                        ACLMessage reply = msg.createReply();
+                        reply.setPerformative(ACLMessage.INFORM);
+                        String replyMsg = "Recebi a pizza! Obrigado.";
+                        reply.setContent(replyMsg);
+                        myAgent.send(reply);                        
+                        _jframe.jTextFieldTelefonistaRespostaCliente.setText(replyMsg);
+                        _jframe.Dormir();
+                        /***/
+                        
+                        String contentMsg = this.myAgent.getAID().getLocalName() + ": Obrigado.";
                         if(msg.getSender().getName().contains("motoboyPedro"))
                         {
                             _jframe.jTextFieldConversaMotoboyPedroCliente.setText(contentMsg);
-                            _jframe.Dormir(5);
+                            _jframe.Dormir();
                         }            
                         else
                         {
                             _jframe.jTextFieldConversaMotoboyJoaoCliente.setText(contentMsg);
-                            _jframe.Dormir(5);
+                            _jframe.Dormir();
                         }
                         
                         //invoca a execução do método takeDown()

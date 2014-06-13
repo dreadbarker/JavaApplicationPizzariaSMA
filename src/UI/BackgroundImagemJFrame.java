@@ -25,6 +25,27 @@ import javax.swing.table.DefaultTableModel;
  */
 public class BackgroundImagemJFrame extends JFrameComponentes//JFrame
 {    
+    private boolean _apresentacao;
+    public void setApresentacao(boolean apresentacao)
+    {
+        this._apresentacao = apresentacao;
+    }
+    
+    private int _tempoSpawnCliente;
+    public void setTempoSpawnCliente(int tempoSpawnCliente) {
+        this._tempoSpawnCliente = tempoSpawnCliente;
+    }
+
+    private int _tempoEntregaPizzaMotoboy;
+    public void setTempoEntregaPizzaMotoboy(int tempoEntregaPizzaMotoboy) {
+        this._tempoEntregaPizzaMotoboy = tempoEntregaPizzaMotoboy;
+    }
+
+    private int _tempoSleepEtapasApresentacao;
+    public void setTempoSleepEtapasApresentacao(int tempoSleepEtapasApresentacao) {
+        this._tempoSleepEtapasApresentacao = tempoSleepEtapasApresentacao;
+    }
+            
     public BackgroundImagemJFrame()
     {       
         //Tamanho da janela
@@ -82,9 +103,10 @@ public class BackgroundImagemJFrame extends JFrameComponentes//JFrame
         
     }
 
-    public void Dormir(int segundo) {
+    public void Dormir() {
         try {
-            Thread.sleep(segundo*1000);
+            if(this._apresentacao)
+                Thread.sleep(_tempoSleepEtapasApresentacao * 1000);
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

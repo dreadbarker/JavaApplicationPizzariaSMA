@@ -32,11 +32,11 @@ public class Telefonista extends Agent {
                     if(content.equalsIgnoreCase("Pizza")) {
                         ACLMessage reply = msg.createReply();
                         reply.setPerformative(ACLMessage.INFORM);
-                        String contentMsg = msg.getSender().getName() + "Recebi seu pedido! Obrigado.";
+                        String contentMsg = msg.getSender().getLocalName() + " Recebi seu pedido! Obrigado.";
                         reply.setContent(contentMsg);
                         myAgent.send(reply);                        
                         _jframe.jTextFieldTelefonistaRespostaCliente.setText(contentMsg);
-                        _jframe.Dormir(5);
+                        _jframe.Dormir();
                         
                         System.out.println("O cliente " + msg.getSender().getName() + " avisou de um pedido, telefonista vai avisar o pizzaiolo");
 
@@ -49,8 +49,8 @@ public class Telefonista extends Agent {
                         mensagemParaPizzaiolo.setContent(msg.getSender().getLocalName());
                         myAgent.send(mensagemParaPizzaiolo);                       
                         
-                        _jframe.jTextFieldTelefonistaPizzaiolo.setText("Envio do pedido do cliente "+ msg.getSender().getName());
-                        _jframe.Dormir(5);
+                        _jframe.jTextFieldTelefonistaPizzaiolo.setText("Pedido do cliente "+ msg.getSender().getLocalName());
+                        _jframe.Dormir();
                     }
                 } else 
                 {

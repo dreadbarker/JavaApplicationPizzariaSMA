@@ -53,9 +53,7 @@ public class TimerTaskCriarCliente  extends TimerTask
         }
         
         System.out.println("Cliente criado!");
-        
-        
-        
+               
         //timer.cancel(); //Terminate the timer thread
         this._count++;
     }

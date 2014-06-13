@@ -48,6 +48,14 @@ public class JFrameComponentes extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jTextFieldConversaPizzaioloMotoboys = new javax.swing.JTextField();
+        jLabelModo = new javax.swing.JLabel();
+        jLabelTempoSpawnClientes = new javax.swing.JLabel();
+        jLabelTempoDelivery = new javax.swing.JLabel();
+        jLabelModoResposta = new javax.swing.JLabel();
+        jLabelTempoSpawnClientesResposta = new javax.swing.JLabel();
+        jLabelTempoDeliveryResposta = new javax.swing.JLabel();
+        jLabelTempoSleepEtapasApresentacao = new javax.swing.JLabel();
+        jLabelTempoSleepEtapasApresentacaoResposta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,8 +86,6 @@ public class JFrameComponentes extends javax.swing.JFrame {
         if (jTable1.getColumnModel().getColumnCount() > 0) {
             jTable1.getColumnModel().getColumn(0).setResizable(false);
         }
-
-        jTextFieldClienteTelefonista.setForeground(new java.awt.Color(51, 51, 255));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Falando com telefonista");
@@ -114,6 +120,22 @@ public class JFrameComponentes extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Conversa Pizzaiolo c/ motoboys");
 
+        jLabelModo.setText("Modo:");
+
+        jLabelTempoSpawnClientes.setText("Tempo Spawn clientes:");
+
+        jLabelTempoDelivery.setText("Tempo delivery:");
+
+        jLabelModoResposta.setText("jLabel13");
+
+        jLabelTempoSpawnClientesResposta.setText("jLabel13");
+
+        jLabelTempoDeliveryResposta.setText("jLabel13");
+
+        jLabelTempoSleepEtapasApresentacao.setText("Tempo Sleep Etapas:");
+
+        jLabelTempoSleepEtapasApresentacaoResposta.setText("jLabel11");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,23 +164,40 @@ public class JFrameComponentes extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jTextFieldConversaMotoboyJoaoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldConversaMotoboyPedroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8))
-                                .addGap(165, 165, 165)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldStatusJoao, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jTextFieldStatusPedro, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel7)
+                                            .addComponent(jTextFieldConversaMotoboyJoaoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jTextFieldConversaMotoboyPedroCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel8))
+                                        .addGap(165, 165, 165)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldStatusJoao, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jTextFieldStatusPedro, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel6)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelTempoDelivery)
+                                            .addComponent(jLabelTempoSpawnClientes)
+                                            .addComponent(jLabelModo)
+                                            .addComponent(jLabelTempoSleepEtapasApresentacao))
+                                        .addGap(26, 26, 26)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelTempoSleepEtapasApresentacaoResposta)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(1, 1, 1)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jLabelTempoDeliveryResposta)
+                                                    .addComponent(jLabelTempoSpawnClientesResposta)
+                                                    .addComponent(jLabelModoResposta, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                                 .addContainerGap(203, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldConversaPizzaioloMotoboys, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))
-                        .addContainerGap())))
+                            .addComponent(jLabel9)
+                            .addComponent(jTextFieldConversaPizzaioloMotoboys, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(57, 57, 57))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,11 +218,27 @@ public class JFrameComponentes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldTelefonistaRespostaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextFieldPizzaioloRespondeTelefonista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTempoSleepEtapasApresentacao)
+                    .addComponent(jLabelTempoSleepEtapasApresentacaoResposta))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelModo)
+                    .addComponent(jLabelModoResposta))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTempoSpawnClientes)
+                    .addComponent(jLabelTempoSpawnClientesResposta))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTempoDelivery)
+                    .addComponent(jLabelTempoDeliveryResposta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextFieldConversaPizzaioloMotoboys, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72)
+                .addGap(114, 114, 114)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel5)
@@ -260,6 +315,14 @@ public class JFrameComponentes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    public javax.swing.JLabel jLabelModo;
+    public javax.swing.JLabel jLabelModoResposta;
+    public javax.swing.JLabel jLabelTempoDelivery;
+    public javax.swing.JLabel jLabelTempoDeliveryResposta;
+    public javax.swing.JLabel jLabelTempoSleepEtapasApresentacao;
+    public javax.swing.JLabel jLabelTempoSleepEtapasApresentacaoResposta;
+    public javax.swing.JLabel jLabelTempoSpawnClientes;
+    public javax.swing.JLabel jLabelTempoSpawnClientesResposta;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable jTable1;
     public javax.swing.JTextField jTextFieldClienteTelefonista;
