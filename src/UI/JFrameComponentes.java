@@ -56,6 +56,8 @@ public class JFrameComponentes extends javax.swing.JFrame {
         jLabelTempoDeliveryResposta = new javax.swing.JLabel();
         jLabelTempoSleepEtapasApresentacao = new javax.swing.JLabel();
         jLabelTempoSleepEtapasApresentacaoResposta = new javax.swing.JLabel();
+        jLabelPasso = new javax.swing.JLabel();
+        jLabelPassoResposta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -136,6 +138,10 @@ public class JFrameComponentes extends javax.swing.JFrame {
 
         jLabelTempoSleepEtapasApresentacaoResposta.setText("jLabel11");
 
+        jLabelPasso.setText("Passo:");
+
+        jLabelPassoResposta.setText("jLabel13");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -190,7 +196,9 @@ public class JFrameComponentes extends javax.swing.JFrame {
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jLabelTempoDeliveryResposta)
                                                     .addComponent(jLabelTempoSpawnClientesResposta)
-                                                    .addComponent(jLabelModoResposta, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                                    .addComponent(jLabelModoResposta, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jLabelPassoResposta)))))
+                                    .addComponent(jLabelPasso))
                                 .addContainerGap(203, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -234,6 +242,10 @@ public class JFrameComponentes extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTempoDelivery)
                     .addComponent(jLabelTempoDeliveryResposta))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelPasso)
+                    .addComponent(jLabelPassoResposta))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -317,6 +329,8 @@ public class JFrameComponentes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     public javax.swing.JLabel jLabelModo;
     public javax.swing.JLabel jLabelModoResposta;
+    public javax.swing.JLabel jLabelPasso;
+    public javax.swing.JLabel jLabelPassoResposta;
     public javax.swing.JLabel jLabelTempoDelivery;
     public javax.swing.JLabel jLabelTempoDeliveryResposta;
     public javax.swing.JLabel jLabelTempoSleepEtapasApresentacao;

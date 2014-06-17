@@ -36,7 +36,7 @@ public class Cliente extends Agent {
               myAgent.send(msg);
               
               _jframe.jTextFieldClienteTelefonista.setText(content);    
-              _jframe.Dormir();
+              _jframe.PassoDormir();
           }  
         });
         
@@ -62,19 +62,19 @@ public class Cliente extends Agent {
                         reply.setContent(replyMsg);
                         myAgent.send(reply);                        
                         _jframe.jTextFieldTelefonistaRespostaCliente.setText(replyMsg);
-                        _jframe.Dormir();
+                        _jframe.PassoDormir();
                         /***/
                         
                         String contentMsg = this.myAgent.getAID().getLocalName() + ": Obrigado.";
                         if(msg.getSender().getName().contains("motoboyPedro"))
                         {
                             _jframe.jTextFieldConversaMotoboyPedroCliente.setText(contentMsg);
-                            _jframe.Dormir();
+                            _jframe.PassoDormir();
                         }            
                         else
                         {
                             _jframe.jTextFieldConversaMotoboyJoaoCliente.setText(contentMsg);
-                            _jframe.Dormir();
+                            _jframe.PassoDormir();
                         }
                         
                         //invoca a execução do método takeDown()

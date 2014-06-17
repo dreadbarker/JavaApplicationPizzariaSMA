@@ -52,12 +52,12 @@ public class Motoboy extends Agent {
             if(this.getLocalName().equals("motoboyPedro"))
             {
                 _jframe.jTextFieldStatusPedro.setText(contentMsg);            
-                _jframe.Dormir();
+                _jframe.PassoDormir();
             }
             else
             {
                 _jframe.jTextFieldStatusJoao.setText(contentMsg);
-                _jframe.Dormir();
+                _jframe.PassoDormir();
             }
         } catch (FIPAException e) 
         {
@@ -78,12 +78,12 @@ public class Motoboy extends Agent {
             if(myAgent.getLocalName().equals("motoboyPedro"))
             {
                 _jframe.jTextFieldStatusPedro.setText(contentMsg);            
-                _jframe.Dormir();
+                _jframe.PassoDormir();
             }
             else
             {
                 _jframe.jTextFieldStatusJoao.setText(contentMsg);
-                _jframe.Dormir();
+                _jframe.PassoDormir();
             }
             
         } catch (FIPAException e) 
@@ -121,7 +121,7 @@ public class Motoboy extends Agent {
                             reply.setContent("Vou entregrar a pizza do cliente " + content + " e já volto.");
                             myAgent.send(reply);
                             _jframe.jTextFieldConversaPizzaioloMotoboys.setText(myAgent.getLocalName()+": vou levar para o "+content);
-                            _jframe.Dormir();
+                            _jframe.PassoDormir();
 
                             SeDesregistrarParaServicoTransporte(myAgent, content);
 
@@ -140,12 +140,12 @@ public class Motoboy extends Agent {
                             if(myAgent.getLocalName().equals("motoboyPedro"))
                             {
                                 _jframe.jTextFieldConversaMotoboyPedroCliente.setText(contentMsg);                                 
-                                _jframe.Dormir();
+                                _jframe.PassoDormir();
                             }
                             else
                             {
                                 _jframe.jTextFieldConversaMotoboyJoaoCliente.setText(contentMsg);
-                                _jframe.Dormir();
+                                _jframe.PassoDormir();
                             }
 
                             try
@@ -169,7 +169,7 @@ public class Motoboy extends Agent {
                             myAgent.send(reply);
 
                             _jframe.jTextFieldConversaPizzaioloMotoboys.setText(myAgent.getLocalName()+": não estou disponível.");
-                            _jframe.Dormir();
+                            _jframe.PassoDormir();
                         }
                     }
                 }

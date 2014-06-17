@@ -82,10 +82,12 @@
                                                   <Component id="jLabelTempoDeliveryResposta" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabelTempoSpawnClientesResposta" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabelModoResposta" alignment="0" min="-2" pref="198" max="-2" attributes="0"/>
+                                                  <Component id="jLabelPassoResposta" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
                                   </Group>
+                                  <Component id="jLabelPasso" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="203" max="32767" attributes="0"/>
                           </Group>
@@ -145,6 +147,11 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabelTempoDelivery" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabelTempoDeliveryResposta" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabelPasso" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabelPassoResposta" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
@@ -396,6 +403,22 @@
     <Component class="javax.swing.JLabel" name="jLabelTempoSleepEtapasApresentacaoResposta">
       <Properties>
         <Property name="text" type="java.lang.String" value="jLabel11"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelPasso">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Passo:"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabelPassoResposta">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel13"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

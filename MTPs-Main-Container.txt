@@ -1,1 +1,1 @@
-http://10.120.16.165:7778/acc
+http://jean-notebook:7778/acc

@@ -7,16 +7,8 @@
 package UI;
 
 import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -45,7 +37,9 @@ public class BackgroundImagemJFrame extends JFrameComponentes//JFrame
     public void setTempoSleepEtapasApresentacao(int tempoSleepEtapasApresentacao) {
         this._tempoSleepEtapasApresentacao = tempoSleepEtapasApresentacao;
     }
-            
+    
+    private int _passo = 0;
+    
     public BackgroundImagemJFrame()
     {       
         //Tamanho da janela
@@ -98,15 +92,13 @@ public class BackgroundImagemJFrame extends JFrameComponentes//JFrame
         }       
     }
     
-    public void MudaStatus()
-    {
-        
-    }
-
-    public void Dormir() {
+    public void PassoDormir() {
         try {
             if(this._apresentacao)
+            {
+                jLabelPassoResposta.setText(String.valueOf(++_passo));
                 Thread.sleep(_tempoSleepEtapasApresentacao * 1000);
+            }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

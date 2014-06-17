@@ -48,7 +48,7 @@ public class Pizzaiolo extends Agent {
                     System.out.println("Pizzaiolo vai verificar se algum motoboy poderia levar a pizza do " + clienteLocalName);
                     
                     _jframe.jTextFieldConversaPizzaioloMotoboys.setText("Buscando motoboy para entregar ao "+clienteLocalName);
-                    _jframe.Dormir();
+                    _jframe.PassoDormir();
                                         
                     //busca por quem fornece o serviço, passando o nome do cliente 
                     ServiceDescription servicoDelivery = new ServiceDescription();
@@ -68,7 +68,7 @@ public class Pizzaiolo extends Agent {
                             myAgent.send(msg);
 
                             _jframe.jTextFieldConversaPizzaioloMotoboys.setText(resultado[0].getName() + " Podes levar?");
-                            _jframe.Dormir();
+                            _jframe.PassoDormir();
                             //Finaliza comportamento
 //                            stop();
                         }
@@ -77,7 +77,7 @@ public class Pizzaiolo extends Agent {
                             String contentMsg = "Nenhum motoboy disponível para levar a pizza do " + clienteLocalName;
                             System.out.println(contentMsg);
                             _jframe.jTextFieldConversaPizzaioloMotoboys.setText(contentMsg);
-                            _jframe.Dormir();
+                            _jframe.PassoDormir();
                         }
                     } catch(FIPAException e)
                     {
@@ -103,7 +103,7 @@ public class Pizzaiolo extends Agent {
                         reply.setContent(contentMsg);                                                
                         myAgent.send(reply);
                         _jframe.jTextFieldPizzaioloRespondeTelefonista.setText(contentMsg);
-                        _jframe.Dormir();
+                        _jframe.PassoDormir();
                         
                         System.out.println("A telefonista " + msg.getSender().getName() + " avisou pizzaiolo de um pedido, ele vai fazer a pizza");
                         System.out.println("Pizza do cliente " + msg.getContent() + " pronta!");

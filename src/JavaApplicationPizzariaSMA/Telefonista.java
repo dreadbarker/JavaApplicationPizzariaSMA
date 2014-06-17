@@ -36,7 +36,7 @@ public class Telefonista extends Agent {
                         reply.setContent(contentMsg);
                         myAgent.send(reply);                        
                         _jframe.jTextFieldTelefonistaRespostaCliente.setText(contentMsg);
-                        _jframe.Dormir();
+                        _jframe.PassoDormir();
                         
                         System.out.println("O cliente " + msg.getSender().getName() + " avisou de um pedido, telefonista vai avisar o pizzaiolo");
 
@@ -50,7 +50,7 @@ public class Telefonista extends Agent {
                         myAgent.send(mensagemParaPizzaiolo);                       
                         
                         _jframe.jTextFieldTelefonistaPizzaiolo.setText("Pedido do cliente "+ msg.getSender().getLocalName());
-                        _jframe.Dormir();
+                        _jframe.PassoDormir();
                     }
                 } else 
                 {

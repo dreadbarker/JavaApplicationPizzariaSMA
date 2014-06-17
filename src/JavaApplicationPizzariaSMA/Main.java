@@ -22,9 +22,9 @@ public class Main {
      * @param args the command line arguments
      */    
     private static boolean _apresentacao = true;
-    private static int _tempoSpawnCliente = 2;
+    private static int _tempoSpawnCliente = 5;
     private static int _tempoEntregaPizzaMotoboy = 15;
-    private static int _tempoSleepEtapasApresentacao = 20;
+    private static int _tempoSleepEtapasApresentacao = 30;
     
     private static AgentContainer cc;
     public static BackgroundImagemJFrame jframe;
@@ -106,6 +106,8 @@ public class Main {
                 jframe.jLabelTempoDeliveryResposta.setVisible(false); 
                 jframe.jLabelTempoSleepEtapasApresentacao.setVisible(true); 
                 jframe.jLabelTempoSleepEtapasApresentacaoResposta.setVisible(true); 
+                jframe.jLabelPasso.setVisible(true);
+                jframe.jLabelPassoResposta.setVisible(true);
                 //Valores labels
                 jframe.jLabelModoResposta.setText("Apresentação"); 
                 jframe.jLabelTempoSleepEtapasApresentacaoResposta.setText(String.valueOf(_tempoSleepEtapasApresentacao));
@@ -116,7 +118,7 @@ public class Main {
                 jade.wrapper.AgentController clienteAC = cc.acceptNewAgent("cliente_0", cliente);
                 
                 //demorar um pouco para dar tempo de obter o sniff do cliente
-                jframe.Dormir();
+                jframe.PassoDormir();
                 
                 clienteAC.start();            
 
@@ -135,6 +137,8 @@ public class Main {
                 jframe.jLabelModoResposta.setText("Normal");
                 jframe.jLabelTempoSpawnClientesResposta.setText(String.valueOf(_tempoSpawnCliente));
                 jframe.jLabelTempoDeliveryResposta.setText(String.valueOf(_tempoEntregaPizzaMotoboy)); 
+                jframe.jLabelPasso.setVisible(false);
+                jframe.jLabelPassoResposta.setVisible(false);
                 
                 TimerCriarCliente tcc = new TimerCriarCliente(_tempoSpawnCliente, cc, jframe);
             }
